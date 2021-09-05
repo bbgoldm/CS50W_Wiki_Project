@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+
+	<!-- Need to auto-escape to process the HTML code -->
+	<p> {{ entry|safe }} </p>
+	
+	<!-- 
+		When submit is pressed, editpage.html is called and
+		the hidden title value is passed 
+	-->
+	<form action="{% url 'encyclopedia:editpage' %}" method='GET'>
+		<!-- {% csrf_token %} -->
+		<input id="title" name="title" type="hidden" value={{ title }}>
+		<input type='submit' class="btn btn-secondary" value='Edit'>
+	</form>
+
+{% endblock %}
